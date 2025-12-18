@@ -2,8 +2,9 @@
     import { onMount } from 'svelte';
     import type { IconSvgElement, HugeiconsProps } from '../create-hugeicon-singleton';
     import { createHugeiconSingleton } from '../create-hugeicon-singleton';
+    import type { SVGAttributes } from 'svelte/elements'
 
-    let props = $props<{
+    type Props = Omit<SVGAttributes<SVGSVGElement>, 'class'> & {
         icon: IconSvgElement;
         altIcon?: IconSvgElement;
         size?: string | number;
@@ -11,27 +12,28 @@
         absoluteStrokeWidth?: boolean;
         color?: string;
         showAlt?: boolean;
-        className?: string;
-    }>();
+    }
+
+    let { icon, altIcon, size, strokeWidth, absoluteStrokeWidth, color, showAlt, className, ...restProps }: Props = $props();
 
     let svgElement: SVGSVGElement;
     let hugeiconAction = $state<ReturnType<typeof createHugeiconSingleton>>();
     let cleanup = $state<{ update: (props: HugeiconsProps) => void; destroy: () => void }>();
 
     const propsForUpdate = $derived({
-        size: props.size ?? 24,
-        strokeWidth: props.strokeWidth,
-        absoluteStrokeWidth: props.absoluteStrokeWidth ?? false,
-        color: props.color ?? 'currentColor',
-        altIcon: props.altIcon,
-        showAlt: props.showAlt ?? false,
-        class: props.className ?? ''
+        size: size ?? 24,
+        strokeWidth: strokeWidth,
+        absoluteStrokeWidth: absoluteStrokeWidth ?? false,
+        color: color ?? 'currentColor',
+        altIcon: altIcon,
+        showAlt: showAlt ?? false,
+        class: className ?? ''
     });
 
     onMount(() => {
         if (!svgElement) return;
         
-        hugeiconAction = createHugeiconSingleton('HugeiconsIcon', props.icon);
+        hugeiconAction = createHugeiconSingleton('HugeiconsIcon', icon);
         cleanup = hugeiconAction.render(svgElement, propsForUpdate);
 
         return () => {
@@ -49,11 +51,12 @@
 <svg 
     bind:this={svgElement}
     xmlns="http://www.w3.org/2000/svg"
-    width={props.size ?? 24}
-    height={props.size ?? 24}
+    width={size ?? 24}
+    height={size ?? 24}
     viewBox="0 0 24 24"
     fill="none"
-    class={props.className}
+    class={className}
+    {...restProps}
 >
     <!-- SVG content will be managed by the action -->
 </svg>
