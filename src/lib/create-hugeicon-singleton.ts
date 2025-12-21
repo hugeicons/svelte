@@ -1,11 +1,3 @@
-const defaultAttributes = {
-    xmlns: 'http://www.w3.org/2000/svg',
-    width: 24,
-    height: 24,
-    viewBox: '0 0 24 24',
-    fill: 'none',
-};
-
 export type IconSvgElement = readonly (readonly [string, { readonly [key: string]: string | number }])[];
 
 export interface HugeiconsProps extends Record<string, any> {

@@ -1,12 +1,11 @@
 import { defineConfig } from 'vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
-import preprocess from 'svelte-preprocess';
+import { svelte, vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [
     svelte({
-      preprocess: preprocess(),
+      preprocess: vitePreprocess(),
       compilerOptions: {
         dev: false
       }
@@ -30,4 +29,4 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true
   }
-}); 
+});
