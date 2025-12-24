@@ -1,25 +1,36 @@
-![31c9262e-aeea-4403-9086-3c8b88885cab](https://github.com/hugeicons/hugeicons-react/assets/130147052/ff91f2f0-095a-4c6d-8942-3af4759f9021)
+![Hugeicons Logo](https://raw.githubusercontent.com/hugeicons/react/main/assets/logo.png)
 
 # @hugeicons/svelte
 
-> HugeIcons Pro Svelte Component Library - Beautiful and customizable icons for your Svelte applications
+> Hugeicons Svelte rendering library for fast, customizable icons with TypeScript and tree-shaking support
 
-## What is HugeIcons?
+## What is Hugeicons?
 
-HugeIcons is a comprehensive icon library designed for modern web and mobile applications. The free package includes 4,000+ carefully crafted icons in the Stroke Rounded style, while the pro version offers over 45,000 icons across 10 unique styles.
+Hugeicons is a large icon set for modern web and mobile apps. The free package includes 4,600+ Stroke Rounded icons. The Pro package provides 46,000+ icons across 10 styles.
+
+## How It Works
+
+This package (`@hugeicons/svelte`) is a **rendering library** - it provides the `HugeiconsIcon` component that displays icons in your Svelte app. The icons themselves come from separate icon packages:
+
+- **Free icons**: `@hugeicons/core-free-icons` (4,600+ icons)
+- **Pro icons**: `@hugeicons-pro/core-*` packages (46,000+ icons, requires license)
 
 ### Key Highlights
-- **4,000+ Free Icons**: Extensive collection of Stroke Rounded icons covering essential UI elements, actions, and concepts
-- **Pixel Perfect**: Every icon is crafted on a 24x24 pixel grid ensuring crisp, clear display at any size
+- **4,600+ Free Icons**: Stroke Rounded set for unlimited personal and commercial projects
+- **46,000+ Pro Icons, 10 Styles**: Stroke, Solid, Bulk, Duotone, and Twotone families for sharp, rounded, and standard needs with richer variants
+- **Pixel Perfect Grid**: Built on a 24x24 grid for crisp rendering at any size
 - **Customizable**: Easily adjust colors, sizes, and styles to match your design needs
+- **Tree Shaking Ready**: Named exports keep bundles lean in modern bundlers
 - **Regular Updates**: New icons added regularly to keep up with evolving design trends
 
-> 📚 **Looking for Pro Icons?** Check out our comprehensive documentation at [docs.hugeicons.com](https://docs.hugeicons.com) for detailed information about pro icons, styles, and advanced usage.
 
-![a40aa766-1b04-4a2a-a2e6-0ec3c492b96a](https://github.com/hugeicons/hugeicons-react/assets/130147052/f82c0e0e-60ae-4617-802f-812cdc7a58da)
+> **Looking for Pro Icons?** Check out our docs at [hugeicons.com/docs](https://hugeicons.com/docs) for detailed information about pro icons, styles, and advanced usage.
+
+![Hugeicons Icons](https://raw.githubusercontent.com/hugeicons/react/main/assets/icons.png)
 
 ## Table of Contents
-- [What is HugeIcons?](#what-is-hugeicons)
+- [What is Hugeicons?](#what-is-hugeicons)
+- [How It Works](#how-it-works)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -27,7 +38,7 @@ HugeIcons is a comprehensive icon library designed for modern web and mobile app
 - [Examples](#examples)
   - [Basic Usage](#basic-usage)
   - [Custom Size and Color](#custom-size-and-color)
-  - [Interactive Examples](#interactive-examples)
+  - [More examples and patterns](#more-examples-and-patterns)
 - [Performance](#performance)
 - [Troubleshooting](#troubleshooting)
 - [Browser Support](#browser-support)
@@ -38,12 +49,12 @@ HugeIcons is a comprehensive icon library designed for modern web and mobile app
 
 ## Features
 
-- 🎨 Customizable colors and sizes
-- 💪 TypeScript support with full type definitions
-- 🎯 Tree-shakeable for optimal bundle size
-- 📦 Multiple bundle formats (ESM, CJS, UMD)
-- ⚡ Lightweight and optimized
-- 🔄 Alternate icon support for dynamic interactions
+- Customizable colors, sizes, and stroke width
+- TypeScript support with full type definitions
+- Tree shakeable for optimal bundle size
+- Multiple bundle formats (ESM, CJS, UMD)
+- Svelte 5 with runes support
+- Alternate icon support for dynamic interactions
 
 ## Installation
 
@@ -81,14 +92,14 @@ bun add @hugeicons/svelte @hugeicons/core-free-icons
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `icon` | `IconType` | Required | The main icon to display |
-| `altIcon` | `IconType` | - | Alternative icon that can be used for states, interactions, animations, or dynamic icon swapping |
+| `icon` | `IconSvgElement` | Required | The main icon to display |
+| `altIcon` | `IconSvgElement` | - | Alternative icon for states, interactions, or dynamic icon swapping |
 | `showAlt` | `boolean` | `false` | When true, displays the altIcon instead of the main icon |
-| `size` | `number` | `24` | Icon size in pixels |
+| `size` | `number \| string` | `24` | Icon size in pixels |
 | `color` | `string` | `currentColor` | Icon color (CSS color value) |
-| `strokeWidth` | `number` | `1.5` | Width of the icon strokes (works with stroke-style icons) |
-| `absoluteStrokeWidth` | `boolean` | `false` | When true, strokeWidth will be absolute and won't scale with the icon size |
-| `class` | `string` | - | Additional CSS classes |
+| `strokeWidth` | `number` | - | Width of the icon strokes |
+| `absoluteStrokeWidth` | `boolean` | `false` | When true, the stroke width will be scaled relative to the icon size |
+| `className` | `string` | - | Additional CSS classes |
 
 ## Examples
 
@@ -96,10 +107,10 @@ bun add @hugeicons/svelte @hugeicons/core-free-icons
 ```svelte
 <script>
   import { HugeiconsIcon } from '@hugeicons/svelte';
-  import { SearchIcon } from '@hugeicons/core-free-icons';
+  import { Video01Icon } from '@hugeicons/core-free-icons';
 </script>
 
-<HugeiconsIcon icon={SearchIcon} />
+<HugeiconsIcon icon={Video01Icon} />
 ```
 
 ### Custom Size and Color
@@ -116,67 +127,10 @@ bun add @hugeicons/svelte @hugeicons/core-free-icons
 />
 ```
 
-### Interactive Examples
+### More examples and patterns
 
-#### Search Bar with Clear Button
-```svelte
-<script>
-  import { HugeiconsIcon } from '@hugeicons/svelte';
-  import { SearchIcon, CloseCircleIcon } from '@hugeicons/core-free-icons';
-  
-  let value = '';
-</script>
-
-<div>
-  <input
-    type="text"
-    bind:value
-    placeholder="Search..."
-  />
-  <HugeiconsIcon
-    icon={SearchIcon}
-    altIcon={CloseCircleIcon}
-    showAlt={value.length > 0}
-    on:click={() => value.length > 0 && (value = '')}
-  />
-</div>
-```
-
-#### Theme Toggle
-```svelte
-<script>
-  import { HugeiconsIcon } from '@hugeicons/svelte';
-  import { SunIcon, MoonIcon } from '@hugeicons/core-free-icons';
-  
-  let isDark = false;
-</script>
-
-<button on:click={() => isDark = !isDark}>
-  <HugeiconsIcon
-    icon={SunIcon}
-    altIcon={MoonIcon}
-    showAlt={isDark}
-  />
-</button>
-```
-
-#### Menu Toggle
-```svelte
-<script>
-  import { HugeiconsIcon } from '@hugeicons/svelte';
-  import { MenuIcon, CancelIcon } from '@hugeicons/core-free-icons';
-  
-  let isOpen = false;
-</script>
-
-<button on:click={() => isOpen = !isOpen}>
-  <HugeiconsIcon
-    icon={MenuIcon}
-    altIcon={CancelIcon}
-    showAlt={isOpen}
-  />
-</button>
-```
+- Examples: https://hugeicons.com/docs/integrations/svelte/examples
+- Best practices: https://hugeicons.com/docs/integrations/svelte/best-practices
 
 ## Performance
 
@@ -213,8 +167,8 @@ The library supports all modern browsers.
 
 ## Pro Version
 
-> 🌟 **Want access to 36,000+ icons and 9 unique styles?** 
-> Check out our [Pro Version](https://hugeicons.com/pricing) and visit [docs.hugeicons.com](https://docs.hugeicons.com) for comprehensive documentation.
+> **Want access to 46,000+ icons and 10 unique styles?**
+> Check out our [Pro Version](https://hugeicons.com/pricing) and visit our [docs](https://hugeicons.com/docs) for detailed documentation.
 
 ### Available Pro Styles
 - **Stroke Styles**
@@ -228,13 +182,21 @@ The library supports all modern browsers.
 - **Special Styles**
   - Bulk Rounded (`@hugeicons-pro/core-bulk-rounded`)
   - Duotone Rounded (`@hugeicons-pro/core-duotone-rounded`)
+  - Duotone Standard (`@hugeicons-pro/core-duotone-standard`)
   - Twotone Rounded (`@hugeicons-pro/core-twotone-rounded`)
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+The code in this package (`@hugeicons/svelte`) is licensed under the MIT License.
+
+This package only provides rendering utilities. It does not include or grant any rights to Hugeicons icon assets. Using Pro icon styles requires a valid Hugeicons Pro license.
+
+Hugeicons icon packs are licensed separately:
+- **Free icon packs**: use the license included with the specific free icon package you install.
+- **Pro icon packs (`@hugeicons-pro/*`)**: require a paid Hugeicons Pro license and are governed by the Hugeicons Pro Terms (see [Pro License](PRO-LICENSE.md).).
+
 
 ## Related
 
 - [@hugeicons/core-free-icons](https://www.npmjs.com/package/@hugeicons/core-free-icons) - Free icon package
-- [HugeIcons Website](https://hugeicons.com) - Browse all available icons 
+- [Hugeicons Website](https://hugeicons.com) - Browse all available icons

@@ -1,7 +1,9 @@
 {
   "name": "@hugeicons/svelte",
-  "version": "1.0.2",
-  "description": "Hugeicons component library for Svelte",
+  "version": "1.0.3",
+  "description": "Hugeicons Svelte Component Library https://hugeicons.com",
+  "homepage": "https://hugeicons.com",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -15,14 +17,28 @@
       "require": "./dist/index.umd.js"
     }
   },
+  "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "PRO-LICENSE.md",
+    "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugeicons/svelte.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hugeicons/svelte/issues"
+  },
   "scripts": {
     "build": "vite build && pnpm run package",
     "package": "svelte-kit sync && svelte-package",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "publish:beta": "pnpm build && npm publish --tag beta --no-git-checks",
+    "publish:prod": "pnpm build && npm publish --no-git-checks"
   },
   "peerDependencies": {
     "svelte": "^5.0.0"
@@ -45,6 +61,5 @@
     "hugeicons",
     "components"
   ],
-  "author": "Hugeicons",
-  "license": "MIT"
+  "author": "Hugeicons"
 }
