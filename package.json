@@ -56,10 +56,15 @@
     "vite": "^6.0.0"
   },
   "keywords": [
+    "hugeicons",
     "svelte",
     "icons",
-    "hugeicons",
-    "components"
+    "svelte-icons",
+    "svg-icons",
+    "svg",
+    "vector-icons",
+    "icon-library",
+    "typescript"
   ],
   "author": "Hugeicons"
 }
