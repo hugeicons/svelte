@@ -1,6 +1,20 @@
 # @hugeicons/svelte
 
 
+## 1.1.0
+
+### Minor Changes
+
+- Added full SVG props support - component now accepts all standard SVG attributes and event handlers
+- Added support for accessibility attributes (aria-label, aria-hidden, role, etc.)
+- Added support for event handlers (onclick, onmouseenter, etc.)
+- Props interface now extends SVGAttributes<SVGSVGElement> for full TypeScript support
+- Added `prepare` script to auto-generate .svelte-kit/ directory after install
+
+### Deprecations
+
+- `className` prop is deprecated - use `class` instead (both work for backward compatibility)
+
 ## 1.0.3
 
 ### Patch Changes
