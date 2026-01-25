@@ -2,8 +2,9 @@
     import { onMount } from 'svelte';
     import type { IconSvgElement, HugeiconsProps } from '../create-hugeicon-singleton';
     import { createHugeiconSingleton } from '../create-hugeicon-singleton';
+    import type { SVGAttributes } from 'svelte/elements';
 
-    interface Props {
+    interface Props extends SVGAttributes<SVGSVGElement> {
         icon: IconSvgElement;
         altIcon?: IconSvgElement;
         size?: string | number;
@@ -11,6 +12,10 @@
         absoluteStrokeWidth?: boolean;
         color?: string;
         showAlt?: boolean;
+        class?: string;
+        /**
+         * @deprecated Use `class` prop instead. This prop will be removed in a future version.
+         */
         className?: string;
     }
 
@@ -22,8 +27,13 @@
         absoluteStrokeWidth = false,
         color = 'currentColor',
         showAlt = false,
-        className = ''
+        class: className = '',
+        className: legacyClassName = '',
+        ...restProps
     }: Props = $props();
+
+    // merge class and className for backward compatibility
+    const finalClassName = $derived(className || legacyClassName);
 
     let svgElement: SVGSVGElement;
     let hugeiconAction = $state<ReturnType<typeof createHugeiconSingleton>>();
@@ -36,7 +46,7 @@
         color,
         altIcon,
         showAlt,
-        class: className
+        class: finalClassName
     });
 
     onMount(() => {
@@ -57,14 +67,15 @@
     });
 </script>
 
-<svg 
+<svg
     bind:this={svgElement}
     xmlns="http://www.w3.org/2000/svg"
     width={size}
     height={size}
     viewBox="0 0 24 24"
     fill="none"
-    class={className}
+    class={finalClassName}
+    {...restProps}
 >
     <!-- SVG content will be managed by the action -->
 </svg>
