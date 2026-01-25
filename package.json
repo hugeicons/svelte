@@ -33,6 +33,7 @@
     "url": "https://github.com/hugeicons/svelte/issues"
   },
   "scripts": {
+    "prepare": "svelte-kit sync",                                                                                                                
     "build": "vite build && pnpm run package",
     "package": "svelte-kit sync && svelte-package",
     "check": "svelte-check --tsconfig ./tsconfig.json",
