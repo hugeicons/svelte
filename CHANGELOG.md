@@ -1,6 +1,13 @@
 # @hugeicons/svelte
 
 
+## 1.1.1
+
+### Patch Changes
+
+- Added postinstall script to display welcome message and encourage community engagement
+- Included scripts directory in published package files
+
 ## 1.1.0
 
 ### Minor Changes

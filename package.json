@@ -1,6 +1,6 @@
 {
   "name": "@hugeicons/svelte",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Hugeicons Svelte Component Library https://hugeicons.com",
   "homepage": "https://hugeicons.com",
   "license": "MIT",
@@ -20,6 +20,7 @@
   "sideEffects": false,
   "files": [
     "dist",
+    "scripts",
     "CHANGELOG.md",
     "LICENSE.md",
     "PRO-LICENSE.md",
@@ -38,6 +39,7 @@
     "package": "svelte-kit sync && svelte-package",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "prepublishOnly": "pnpm run build",
+    "postinstall": "node ./scripts/postinstall.cjs",
     "publish:beta": "pnpm build && npm publish --tag beta --no-git-checks",
     "publish:prod": "pnpm build && npm publish --no-git-checks"
   },
