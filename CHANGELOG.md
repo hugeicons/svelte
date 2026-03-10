@@ -1,6 +1,12 @@
 # @hugeicons/svelte
 
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated icon counts to 5,100+ free / 51,000+ pro
+
 ## 1.1.1
 
 ### Patch Changes
